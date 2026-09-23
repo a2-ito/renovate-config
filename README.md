@@ -17,10 +17,13 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 - minor / patch はすべて 1 つの PR にまとめ、major は個別の PR にする
 - Terraform（`*.tf` の provider・module・`required_version`、`.terraform-version`、Terragrunt、TFLint プラグイン）の minor / patch は、plan を確認しやすいように別の 1 つの PR にまとめる
 - PR には `dependencies` ラベルを付ける。脆弱性の修正 PR は時間を問わず即座に作り、`security-dependency-update` も付ける
-- 上流が未対応のため、`eslint` は 10 未満、`typescript` は 7 未満に留める
+- 上流が未対応のため、`eslint` は 10 未満に留める
 - Dependency Dashboard（更新の一覧を載せた Issue）を各リポジトリに作る
 
 ## リポジトリごとの上書き
+
+共通ルールには、全リポジトリに当てはまるものだけを置く。特定のリポジトリの事情による制限
+（例: cloud-scope の `typescript` を 7 未満に留める）は、そのリポジトリの `renovate.json` に書く。
 
 そのリポジトリだけのルールは、各リポジトリの `renovate.json` に書く。継承された設定の上に重ねて適用される。
 
