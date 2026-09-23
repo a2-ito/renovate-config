@@ -1,0 +1,7 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "a2-ito の全リポジトリに継承される設定。Mend の Renovate App が読む",
+  "extends": ["github>a2-ito/renovate-config"],
+  "onboarding": false,
+  "requireConfig": "optional"
+}
