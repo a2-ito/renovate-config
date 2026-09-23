@@ -18,7 +18,20 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 - Terraform（`*.tf` の provider・module・`required_version`、`.terraform-version`、Terragrunt、TFLint プラグイン）の minor / patch は、plan を確認しやすいように別の 1 つの PR にまとめる
 - PR には `dependencies` ラベルを付ける。脆弱性の修正 PR は時間を問わず即座に作り、`security-dependency-update` も付ける
 - 上流が未対応のため、`eslint` は 10 未満に留める
+- minor / patch は自動マージする。major は手で見る
+- Terraform の更新だけは自動マージしない。plan を目で確かめたいため
 - Dependency Dashboard（更新の一覧を載せた Issue）を各リポジトリに作る
+
+## 自動マージ
+
+`platformAutomerge` を `false` にしている。既定の `true` は GitHub 標準の
+auto-merge を使う設定で、「必須ステータスチェックがすべて通ったらマージ」という
+動きをする。ところが必須チェックを持つリポジトリは `cloudflare-apps` だけなので、
+そのままだと残りは **CI の完了を待たずに即マージされる**。
+
+`false` にすると Renovate 自身がブランチのステータスを確認してからマージする。
+CI があれば結果を待ち、無ければそのままマージする。リポジトリごとに必須チェックを
+設定して回らずに済む。
 
 ## リポジトリごとの上書き
 
