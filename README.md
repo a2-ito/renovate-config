@@ -15,6 +15,7 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 
 - 毎週月曜 9 時 (JST) より前に PR を作る
 - minor / patch はすべて 1 つの PR にまとめ、major は個別の PR にする
+- Terraform（`*.tf` の provider・module・`required_version`、`.terraform-version`、Terragrunt、TFLint プラグイン）の minor / patch は、plan を確認しやすいように別の 1 つの PR にまとめる
 - PR には `dependencies` ラベルを付ける。脆弱性の修正 PR は時間を問わず即座に作り、`security-dependency-update` も付ける
 - 上流が未対応のため、`eslint` は 10 未満、`typescript` は 7 未満に留める
 - Dependency Dashboard（更新の一覧を載せた Issue）を各リポジトリに作る
