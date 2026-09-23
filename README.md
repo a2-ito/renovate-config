@@ -6,10 +6,21 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 
 | ファイル | 役割 |
 | --- | --- |
-| `org-inherited-config.json` | Mend の Renovate App が全リポジトリに継承させる設定。`default.json` を読み込み、各リポジトリに `renovate.json` が無くても動くようにする |
-| `default.json` | 基本ルール。`github>a2-ito/renovate-config` で参照できる |
+| `default.json` | 基本ルール。各リポジトリの `renovate.json` から `github>a2-ito/renovate-config` で読み込む |
+| `org-inherited-config.json` | 現在は効いていない（後述） |
 
-`org-inherited-config.json` を読ませるには、このリポジトリ名が `renovate-config` でなければならない。
+## 使い方
+
+各リポジトリの `renovate.json` で読み込む。
+
+```json
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>a2-ito/renovate-config"]
+}
+```
+
+`renovate.json` の無いリポジトリには基本ルールが効かない。
 
 ## 基本ルール
 
@@ -25,11 +36,12 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 共通ルールには、全リポジトリに当てはまるものだけを置く。特定のリポジトリの事情による制限
 （例: cloud-scope の `typescript` を 7 未満に留める）は、そのリポジトリの `renovate.json` に書く。
 
-そのリポジトリだけのルールは、各リポジトリの `renovate.json` に書く。継承された設定の上に重ねて適用される。
+そのリポジトリだけのルールは、`extends` と同じ `renovate.json` に書く。基本ルールの上に重ねて適用される。
 
 ```json
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>a2-ito/renovate-config"],
   "packageRules": [
     {
       "matchUpdateTypes": ["major"],
@@ -39,7 +51,18 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 }
 ```
 
-継承された設定の中のプリセットは、リポジトリ側の `ignorePresets` では外せない。
+## org-inherited-config.json は効いていない
+
+Renovate には、同じオーナーの `renovate-config` にある `org-inherited-config.json` を
+全リポジトリに継承させる仕組み（inherited config）がある。これを使えば各リポジトリに
+`renovate.json` を置かずに済むはずだった。
+
+実際には読まれていない。Mend のジョブログ（2026-09-23）を見ると、Mend が渡す
+グローバル設定に `inheritConfig` が無く、このリポジトリを読みにいった形跡も無い。
+Organization ではなく個人アカウントにインストールしているためと考えている。
+
+ファイルは害が無いので残している。Mend 側で有効になったら、`renovate.json` を
+置いていないリポジトリにも基本ルールが効くようになる。
 
 ## 検証
 
