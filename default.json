@@ -24,11 +24,6 @@
       "description": "eslint-plugin-react が ESLint 10 の新しいルール API に未対応で、lint 実行時にクラッシュする (Error while loading rule 'react/display-name')。上流が対応したら外す",
       "matchPackageNames": ["eslint"],
       "allowedVersions": "<10"
-    },
-    {
-      "description": "typescript-eslint が TypeScript 7 に未対応。https://github.com/typescript-eslint/typescript-eslint/issues/10940 が閉じたら外す",
-      "matchPackageNames": ["typescript"],
-      "allowedVersions": "<7"
     }
   ]
 }
