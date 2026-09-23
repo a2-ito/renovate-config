@@ -12,13 +12,21 @@
   "vulnerabilityAlerts": {
     "labels": ["dependencies", "security-dependency-update"]
   },
+  "platformAutomerge": false,
   "packageRules": [
     {
-      "description": "Terraform の更新は plan の確認が要るので、minor / patch を他の依存と別の PR にまとめる",
+      "description": "minor / patch は自動マージする。group:allNonMajor で 1 本の PR にまとまるため、週に一度これが自動で片付く。major は手で見る",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Terraform の更新は plan を目で確かめたいので、minor / patch を他の依存と別の PR にまとめたうえで自動マージの対象から外す",
       "matchCategories": ["terraform"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "terraform",
-      "groupSlug": "terraform"
+      "groupSlug": "terraform",
+      "automerge": false
     },
     {
       "description": "eslint-plugin-react が ESLint 10 の新しいルール API に未対応で、lint 実行時にクラッシュする (Error while loading rule 'react/display-name')。上流が対応したら外す",
