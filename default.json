@@ -21,6 +21,11 @@
       "automergeStrategy": "squash"
     },
     {
+      "description": "major は手で見る。CI 成功後に自動マージするリポジトリはラベルで外す作り（オプトアウト）で、名前が系統ごとに違うため両方付ける。a2ito 側のラベルは github-management の labels.tf で作っている",
+      "matchUpdateTypes": ["major"],
+      "addLabels": ["no-automerge", "manualmerge"]
+    },
+    {
       "description": "Terraform の更新は plan を目で確かめたいので、minor / patch を他の依存と別の PR にまとめたうえで自動マージの対象から外す",
       "matchCategories": ["terraform"],
       "matchUpdateTypes": ["minor", "patch"],
