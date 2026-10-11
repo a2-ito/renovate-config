@@ -37,6 +37,11 @@
       "description": "eslint-plugin-react が ESLint 10 の新しいルール API に未対応で、lint 実行時にクラッシュする (Error while loading rule 'react/display-name')。上流が対応したら外す",
       "matchPackageNames": ["eslint"],
       "allowedVersions": "<10"
+    },
+    {
+      "description": "Flutter SDK 同梱の Gradle プラグイン。includeBuild で SDK から読み込み Maven に公開されていないため、lookup が失敗して Dependency Dashboard に warning が出る。Flutter SDK の更新と一緒に上がるので Renovate の対象から外す",
+      "matchDepNames": ["dev.flutter.flutter-plugin-loader"],
+      "enabled": false
     }
   ]
 }
