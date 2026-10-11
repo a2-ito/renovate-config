@@ -30,6 +30,7 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 - PR には `dependencies` ラベルを付ける。脆弱性の修正 PR は時間を問わず即座に作り、`security-dependency-update` も付ける
 - 上流が未対応のため、`eslint` は 10 未満に留める
 - minor / patch は自動マージする。major は手で見る
+- major の PR には `no-automerge` と `manualmerge` を付ける。CI 成功後に自動マージするリポジトリは、このラベルで major を自動マージから外す
 - Terraform の更新だけは自動マージしない。plan を目で確かめたいため
 - Dependency Dashboard（更新の一覧を載せた Issue）を各リポジトリに作る
 
