@@ -25,6 +25,10 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 ## 基本ルール
 
 - 毎週月曜 9 時 (JST) より前に PR を作る
+- 開いている PR の更新（rebase や新しい版への追従）も同じ時間帯だけにする（`updateNotScheduled: false`）。
+  既定ではスケジュール外でも更新し、そのたびに全 PR の CI が一斉に走る。self-hosted runner（Cloud Run）は
+  一度にたくさん起動すると一部が起動直後に落ち、runner の付かないジョブが残るため、いつ来るか分からない一斉起動を避ける
+- 同時に開いておく PR は 5 つまで（`prConcurrentLimit`）。一度に更新される PR の数の上限にもなる
 - minor / patch はすべて 1 つの PR にまとめ、major は個別の PR にする
 - Terraform（`*.tf` の provider・module・`required_version`、`.terraform-version`、Terragrunt、TFLint プラグイン）の minor / patch は、plan を確認しやすいように別の 1 つの PR にまとめる
 - PR には `dependencies` ラベルを付ける。脆弱性の修正 PR は時間を問わず即座に作り、`security-dependency-update` も付ける

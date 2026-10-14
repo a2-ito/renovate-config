@@ -8,6 +8,8 @@
     "group:allNonMajor"
   ],
   "schedule": ["* 0-8 * * 1"],
+  "updateNotScheduled": false,
+  "prConcurrentLimit": 5,
   "labels": ["dependencies"],
   "vulnerabilityAlerts": {
     "labels": ["dependencies", "security-dependency-update"]
