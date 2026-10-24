@@ -4,10 +4,10 @@ a2-ito の全リポジトリで共有する Renovate の設定。
 
 ## ファイル
 
-| ファイル | 役割 |
-| --- | --- |
-| `default.json` | 基本ルール。各リポジトリの `renovate.json` から `github>a2-ito/renovate-config` で読み込む |
-| `org-inherited-config.json` | 現在は効いていない（後述） |
+| ファイル                    | 役割                                                                                       |
+| --------------------------- | ------------------------------------------------------------------------------------------ |
+| `default.json`              | 基本ルール。各リポジトリの `renovate.json` から `github>a2-ito/renovate-config` で読み込む |
+| `org-inherited-config.json` | 現在は効いていない（後述）                                                                 |
 
 ## 使い方
 
